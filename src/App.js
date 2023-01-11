@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {BrowserRouter, Route, Navigate, Routes} from "react-router-dom";
+import MainLayout from "./layout/Main";
+import Homepage from "./pages/Homepage";
+import Todo from "./pages/Todo";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/binaryVeda' element={<MainLayout/>}>
+          <Route index element={<Homepage/>}/>
+          <Route path='todoWidget' element={<Todo/>}/>
+          <Route path="*" element={<Navigate to="/binaryVeda"/>}/>
+        </Route>
+        <Route path="*" element={<Navigate to="/binaryVeda"/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
